@@ -51,6 +51,12 @@ namespace TestConsole
 
         }
 
+
+        /// <summary>
+        /// Remove the given midde node - O(N)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="value"></param>
         public void RermoveMiddleNode(Node<T> head, T value)
         {
             if (head == null || head.Next == null)
