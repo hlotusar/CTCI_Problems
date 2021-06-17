@@ -27,5 +27,28 @@ namespace TestConsole
                 node = node.Next;
             }
         }
+
+
+        /// <summary>
+        /// return the linked list from kth element to last, the first element is 1 not zero - O(N)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="kth"></param>
+        /// <returns></returns>
+        public Node<T> ReturnKthToLast(Node<T> head,int kth=1)
+        {
+            if (kth < 2)
+                return head;
+            var node = head;
+            while(kth > 1 && node != null)
+            {
+                node = node.Next;
+                kth--;
+            }
+            if (kth != 1)
+                return null;
+            else return node;
+
+        }
     }
 }

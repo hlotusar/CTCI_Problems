@@ -23,6 +23,11 @@ namespace TestConsole.DSA
 
         public static void PrintLinkedList(Node<T> head)
         {
+            if(head == null)
+            {
+                Console.WriteLine("null");
+                return;
+            }
             var node = head;
             while(node != null)
             {
