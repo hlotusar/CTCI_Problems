@@ -30,7 +30,7 @@ namespace TestConsole
 
 
         /// <summary>
-        /// return the linked list from kth element to last, the first element is 1 not zero - O(N)
+        /// 2.2 - return the linked list from kth element to last, the first element is 1 not zero - O(N)
         /// </summary>
         /// <param name="head"></param>
         /// <param name="kth"></param>
@@ -53,7 +53,7 @@ namespace TestConsole
 
 
         /// <summary>
-        /// Remove the given midde node - O(N)
+        /// 2.3 - Remove the given midde node - O(N)
         /// </summary>
         /// <param name="head"></param>
         /// <param name="value"></param>
@@ -72,6 +72,37 @@ namespace TestConsole
                 }
                 prevNode = prevNode.Next;
             }
+        }
+
+
+        /// <summary>
+        /// 2.4 - Make partition around a given value x, left side will be less than x 
+        /// and right side will be greater than equal to x, order does not matter- O(N)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Node<int> MakePartition(Node<int> head, int value)
+        {
+            if (head == null || head.Next == null)
+                return head;
+            var node = head.Next;
+            Node<int> headNode = new Node<int>(head.Data);
+            var tailNode = headNode;
+            while(node != null)
+            {
+                if(node.Data < value)
+                {
+                    headNode = new Node<int>(node.Data,headNode);
+                }
+                else
+                {
+                    tailNode.Next = new Node<int>(node.Data);
+                    tailNode = tailNode.Next;
+                }
+                node = node.Next;
+            }
+            return headNode;
         }
     }
 }
