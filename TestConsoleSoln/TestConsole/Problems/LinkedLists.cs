@@ -50,5 +50,22 @@ namespace TestConsole
             else return node;
 
         }
+
+        public void RermoveMiddleNode(Node<T> head, T value)
+        {
+            if (head == null || head.Next == null)
+                return;
+
+            var prevNode = head;
+            while(prevNode.Next != null)
+            {
+                if(prevNode.Next.Data.Equals(value) && prevNode.Next.Next != null)
+                {
+                    prevNode.Next = prevNode.Next.Next;
+                    return;
+                }
+                prevNode = prevNode.Next;
+            }
+        }
     }
 }
