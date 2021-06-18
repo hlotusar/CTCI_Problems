@@ -4,3 +4,5 @@ TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.pdb
 TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.csprojAssemblyReference.cache
 TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.dll
 *.pdb
+*.dll
+*.cache
