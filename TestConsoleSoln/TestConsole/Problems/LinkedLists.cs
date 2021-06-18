@@ -104,5 +104,84 @@ namespace TestConsole
             }
             return headNode;
         }
+
+        /// <summary>
+        /// 2.5 - sum of two linked lists where the head is 1st place and tail is 10^nth place
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <returns></returns>
+        public Node<int> SumListsInReverse(Node<int> node1, Node<int> node2)
+        {
+            if (node1 == null)
+                return node2;
+            if (node2 == null)
+                return node1;
+
+            Node<int> sumNode = new Node<int>((node1.Data + node2.Data) % 10);
+            int carry = (node1.Data + node2.Data) / 10;
+            node1 = node1.Next; node2 = node2.Next;
+            var bnode = sumNode;
+            while(node1 != null || node2 != null)
+            {
+                if(node2 != null && node1 != null)
+                {
+                    bnode.Next = new Node<int>((node1.Data + node2.Data + carry) % 10);
+                    carry = (node1.Data + node2.Data + carry) / 10;
+                    bnode = bnode.Next;
+                    node1 = node1.Next;
+                    node2 = node2.Next;
+                }
+                else
+                {
+                    if(node1 != null)
+                    {
+                        if(carry != 0)
+                        {
+                            bnode.Next = new Node<int>((node1.Data + carry) % 10);
+                            carry = (node1.Data + carry) / 10;
+                            node1 = node1.Next;
+                        }
+                        else { bnode.Next = node1; break; }
+                        
+                    }
+                    if(node2 != null)
+                    {
+                        if (carry != 0)
+                        {
+                            bnode.Next = new Node<int>((node2.Data + carry) % 10);
+                            carry = (node2.Data + carry) / 10;
+                            node2 = node2.Next;
+                        }
+                        else { bnode.Next = node2; break; }
+                    }
+                }
+            }
+            if (carry != 0)
+            {
+                bnode.Next = new Node<int>(carry);
+            }
+            return sumNode;
+        }
+
+
+        /// <summary>
+        /// sum of two linked lists where the head is 10^n place and tail is 1st place
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <returns></returns>
+        public Node<int> SumListsInForward(Node<int> node1, Node<int> node2)
+        {
+            if (node1 == null)
+                return node2;
+            if (node2 == null)
+                return node1;
+
+            var reverseNode1 = SinglyLinkedList<int>.ReverseALinkedList(node1);
+            var reverseNode2 = SinglyLinkedList<int>.ReverseALinkedList(node2);
+            var reverseSum = SumListsInReverse(reverseNode1, reverseNode2);
+            return SinglyLinkedList<int>.ReverseALinkedList(reverseSum);
+        }
     }
 }
