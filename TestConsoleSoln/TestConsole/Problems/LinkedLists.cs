@@ -1,4 +1,5 @@
-﻿using TestConsole.DSA;
+﻿using System.Collections;
+using TestConsole.DSA;
 
 namespace TestConsole
 {
@@ -13,10 +14,10 @@ namespace TestConsole
         public void RemoveDuplicates(Node<T> Head)
         {
             var node = Head;
-            while(node!=null)
+            while (node != null)
             {
                 var bufferNode = node;
-                while(bufferNode.Next != null)
+                while (bufferNode.Next != null)
                 {
                     if (node.Data.Equals(bufferNode.Next.Data))
                     {
@@ -35,12 +36,12 @@ namespace TestConsole
         /// <param name="head"></param>
         /// <param name="kth"></param>
         /// <returns></returns>
-        public Node<T> ReturnKthToLast(Node<T> head,int kth=1)
+        public Node<T> ReturnKthToLast(Node<T> head, int kth = 1)
         {
             if (kth < 2)
                 return head;
             var node = head;
-            while(kth > 1 && node != null)
+            while (kth > 1 && node != null)
             {
                 node = node.Next;
                 kth--;
@@ -63,9 +64,9 @@ namespace TestConsole
                 return;
 
             var prevNode = head;
-            while(prevNode.Next != null)
+            while (prevNode.Next != null)
             {
-                if(prevNode.Next.Data.Equals(value) && prevNode.Next.Next != null)
+                if (prevNode.Next.Data.Equals(value) && prevNode.Next.Next != null)
                 {
                     prevNode.Next = prevNode.Next.Next;
                     return;
@@ -89,11 +90,11 @@ namespace TestConsole
             var node = head.Next;
             Node<int> headNode = new Node<int>(head.Data);
             var tailNode = headNode;
-            while(node != null)
+            while (node != null)
             {
-                if(node.Data < value)
+                if (node.Data < value)
                 {
-                    headNode = new Node<int>(node.Data,headNode);
+                    headNode = new Node<int>(node.Data, headNode);
                 }
                 else
                 {
@@ -106,7 +107,7 @@ namespace TestConsole
         }
 
         /// <summary>
-        /// 2.5 - sum of two linked lists where the head is 1st place and tail is 10^nth place
+        /// 2.5 - sum of two linked lists where the head is 1st place and tail is 10^nth place - O(N)
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
@@ -122,9 +123,9 @@ namespace TestConsole
             int carry = (node1.Data + node2.Data) / 10;
             node1 = node1.Next; node2 = node2.Next;
             var bnode = sumNode;
-            while(node1 != null || node2 != null)
+            while (node1 != null || node2 != null)
             {
-                if(node2 != null && node1 != null)
+                if (node2 != null && node1 != null)
                 {
                     bnode.Next = new Node<int>((node1.Data + node2.Data + carry) % 10);
                     carry = (node1.Data + node2.Data + carry) / 10;
@@ -134,18 +135,18 @@ namespace TestConsole
                 }
                 else
                 {
-                    if(node1 != null)
+                    if (node1 != null)
                     {
-                        if(carry != 0)
+                        if (carry != 0)
                         {
                             bnode.Next = new Node<int>((node1.Data + carry) % 10);
                             carry = (node1.Data + carry) / 10;
                             node1 = node1.Next;
                         }
                         else { bnode.Next = node1; break; }
-                        
+
                     }
-                    if(node2 != null)
+                    if (node2 != null)
                     {
                         if (carry != 0)
                         {
@@ -166,7 +167,7 @@ namespace TestConsole
 
 
         /// <summary>
-        /// sum of two linked lists where the head is 10^n place and tail is 1st place
+        /// 2.3 - sum of two linked lists where the head is 10^n place and tail is 1st place - O(N)
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
@@ -182,6 +183,78 @@ namespace TestConsole
             var reverseNode2 = SinglyLinkedList<int>.ReverseALinkedList(node2);
             var reverseSum = SumListsInReverse(reverseNode1, reverseNode2);
             return SinglyLinkedList<int>.ReverseALinkedList(reverseSum);
+        }
+
+
+        /// <summary>
+        /// 2.6 - check if a linked list is palindrome or not - O(N)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool CheckPalindrome(Node<T> head)
+        {
+            if (head == null || head.Next == null)
+                return true;
+            var node = head;
+            var reverseNode = SinglyLinkedList<T>.ReverseALinkedList(head);
+            while (node != null)
+            {
+                if (!node.Data.Equals(reverseNode.Data)) return false;
+
+                node = node.Next;
+                reverseNode = reverseNode.Next;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 2.7 - find the intersecting node of 2 lists by reference - O(N)
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <returns></returns>
+        public Node<T> GetInterSectingNode(Node<T> node1, Node<T> node2)
+        {
+            Node<T> intersectingNode = null;
+            Hashtable hashtable = new Hashtable();
+            while (node1 != null)
+            {
+                hashtable.Add(node1.GetHashCode(), node1);
+
+                node1 = node1.Next;
+            }
+            while(node2 != null)
+            {
+                if(hashtable.ContainsKey(node2.GetHashCode()))
+                {
+                    intersectingNode = node2;
+                    break;
+                }
+                node2 = node2.Next;
+            }
+            return intersectingNode;
+        }
+
+
+        /// <summary>
+        /// 2.8 - find the begining node of the circular linked list - O(N)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public Node<T> GetBeginingNodeInLoop(Node<T> node)
+        {
+            Hashtable hashtable = new Hashtable();
+            while(node != null)
+            {
+                if (hashtable.ContainsKey(node.GetHashCode()))
+                    return node;
+                else
+                {
+                    hashtable.Add(node.GetHashCode(), node);
+                }
+                node = node.Next;
+            }
+            return null;
         }
     }
 }
