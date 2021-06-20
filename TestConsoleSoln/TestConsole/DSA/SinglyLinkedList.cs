@@ -10,7 +10,7 @@ namespace TestConsole.DSA
 
         public static Node<T> Head { get; set; }
 
-
+        #region Methods
         public static Node<T> AddNodeAtHead(T value, Node<T> headNode)
         {
             return new Node<T>(value, headNode);
@@ -54,6 +54,8 @@ namespace TestConsole.DSA
             }
             return Head;
         }
+
+        #endregion
     }
 
     public class Node<T>
