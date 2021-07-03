@@ -6,3 +6,6 @@ TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.dll
 *.pdb
 *.dll
 *.cache
+.vs/VSWorkspaceState.json
+.vs/CTCI_Problems/v16/.suo
+TestConsoleSoln/.vs/TestConsoleSoln/DesignTimeBuild/.dtbcache.v2

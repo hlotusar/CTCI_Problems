@@ -20,6 +20,14 @@ namespace TestConsole.TestDataGeneration
             return headNode;
         }
 
+
+        /// <summary>
+        /// create a 
+        /// </summary>
+        /// <param name="nodeNumber"></param>
+        /// <param name="startValue"></param>
+        /// <param name="ascending"></param>
+        /// <returns></returns>
         public static Node<int> CreateSortedIntegerLinkedList(int nodeNumber = 3,int startValue = 1, bool ascending = true)
         { 
             Node<int> headNode = new Node<int>(startValue);
