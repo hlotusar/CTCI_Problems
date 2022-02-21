@@ -9,3 +9,11 @@ TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.dll
 .vs/VSWorkspaceState.json
 .vs/CTCI_Problems/v16/.suo
 TestConsoleSoln/.vs/TestConsoleSoln/DesignTimeBuild/.dtbcache.v2
+TestConsoleSoln/TestConsole/bin/Debug/netcoreapp3.1/TestConsole.exe
+TestConsoleSoln/TestConsole/bin/Debug/netcoreapp3.1/TestConsole.runtimeconfig.dev.json
+TestConsoleSoln/TestConsole/obj/project.assets.json
+TestConsoleSoln/TestConsole/obj/TestConsole.csproj.nuget.dgspec.json
+TestConsoleSoln/TestConsole/obj/TestConsole.csproj.nuget.g.props
+TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/apphost.exe
+TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.csproj.FileListAbsolute.txt
+TestConsoleSoln/TestConsole/obj/Debug/netcoreapp3.1/TestConsole.GeneratedMSBuildEditorConfig.editorconfig

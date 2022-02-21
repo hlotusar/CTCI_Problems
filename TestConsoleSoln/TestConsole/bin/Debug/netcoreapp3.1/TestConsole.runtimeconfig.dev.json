@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\hlotu\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\hlotu\\.nuget\\packages"
-    ]
-  }
-}
